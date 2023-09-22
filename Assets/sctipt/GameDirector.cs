@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
-    public float hight = 0f;
-    public Text scoreText;
-    public float gameTime = 60f;
-    public Image timerGauge;
-
-    private float timeLeft;
+    float hight = 0f;
+    GameObject scoreText;
+    float gameTime = 60f;
+    Image timerGauge;
+    float timeLeft;
 
     void Start()
     {
         timeLeft = gameTime;
+        this.scoreText = GameObject.Find("Score");
     }
-        void Update()
+    void Update()
     {
         timeLeft -= Time.deltaTime;
 
@@ -36,7 +36,7 @@ public class GameDirector : MonoBehaviour
         }
 
         float score = hight * 10 - 3;
-        scoreText.text = "SCORE: " + score.ToString("F1");
+        scoreText.GetComponent<Text>().text = "SCORE: " + score.ToString("F1");
 
         float fillAmount = timeLeft / gameTime;
         timerGauge.fillAmount = fillAmount;
