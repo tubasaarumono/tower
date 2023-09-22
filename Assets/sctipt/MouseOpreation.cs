@@ -27,29 +27,7 @@ public class MouseOpreation : MonoBehaviour
 
     void OnMouseDrag()
     {
-     //    Vector3 newPos = GetMouseWorldPos() + mOffset;
-
-        // 矢印キーの入力を取得
-        // float moveSpeed = 0.1f;
-        // if (Input.GetKey(KeyCode.UpArrow))
-        // {
-        //     newPos.z += moveSpeed;
-        // }
-        // else if (Input.GetKey(KeyCode.DownArrow))
-        // {
-        //     newPos.z -= moveSpeed;
-        // }
-        // else if (Input.GetKey(KeyCode.RightArrow))
-        // {
-        //     newPos.x += moveSpeed;
-        // }
-        // else if (Input.GetKey(KeyCode.LeftArrow))
-        // {
-        //     newPos.x -= moveSpeed;
-        // }
-
-        // 矢印キーの入力を取得
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+             if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             upArrowCount++;
         }
@@ -66,9 +44,30 @@ public class MouseOpreation : MonoBehaviour
             leftArrowCount++;
         }
 
+        // スペースキーで上下回転
+        if (Input.GetKey(KeyCode.Space))
+        {
+            transform.Rotate(Vector3.right, 1f);
+        }
+
+        // シフトキーで左右回転
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            transform.Rotate(Vector3.up, 1f);
+        }
+
         Vector3 newPos = GetMouseWorldPos() + mOffset + new Vector3(rightArrowCount - leftArrowCount, 0, upArrowCount - downArrowCount) * 0.1f;
 
         // オブジェクトの位置を更新
         gameObject.transform.position = newPos;
+    }
+
+    void Update()
+    {
+        // Y座標が-5以下になった場合、オブジェクトを削除する
+        if (gameObject.transform.position.y < -5)
+        {
+            Destroy(gameObject);
+        }
     }
 }
