@@ -37,7 +37,8 @@ public class GameDirector : MonoBehaviour
             }
         }
 
-        float score = hight * 10 - 0.1f;
+        float score = hight * 10 -
+            0.1f;
         scoreText.text = "SCORE: " + score.ToString("F1");
 
         float fillAmount = timeLeft / gameTime;
