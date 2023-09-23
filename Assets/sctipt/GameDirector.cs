@@ -8,8 +8,8 @@ using TMPro;
 public class GameDirector : MonoBehaviour
 {
     float hight = 0f;
-    GameObject scoreText;
-    // public TextMeshProUGUI scoreText;
+    //GameObject scoreText;
+    public TextMeshProUGUI scoreText;
     float gameTime = 60f;
     Image timerGauge;
     float timeLeft;
@@ -17,7 +17,7 @@ public class GameDirector : MonoBehaviour
     void Start()
     {
         timeLeft = gameTime;
-        this.scoreText = GameObject.Find("Score");
+        this.scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
@@ -37,8 +37,8 @@ public class GameDirector : MonoBehaviour
             }
         }
 
-        float score = hight * 10 - 3;
-        scoreText.GetComponent<Text>().text = "SCORE: " + score.ToString("F1");
+        float score = hight * 10 - 0.1f;
+        scoreText.text = "SCORE: " + score.ToString("F1");
 
         float fillAmount = timeLeft / gameTime;
         timerGauge.fillAmount = fillAmount;
