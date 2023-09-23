@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameDirector : MonoBehaviour
 {
     float hight = 0f;
     GameObject scoreText;
+    // public TextMeshProUGUI scoreText;
     float gameTime = 60f;
     Image timerGauge;
     float timeLeft;
